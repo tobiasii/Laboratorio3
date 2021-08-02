@@ -13,7 +13,7 @@ SYSCTL_PRGPIO_R		EQU     0x400FEA08
 PORTN_BIT               EQU     1000000000000b ; bit 12 = Port N
 
 GPIO_PORTN_BASE    	EQU     0x40064000
-GPIO_PORT_DATA_R         EQU     0x000
+GPIO_PORT_DATA_R        EQU     0x3FC
 GPIO_PORT_DIR_R     	EQU     0x400
 GPIO_PORT_DEN_R     	EQU     0x51C
 
@@ -48,7 +48,11 @@ wait	LDR R2, [R0] ; leitura do estado atual
 //loop    LDR R4, [R0, R2]
 //        EOR R4, R1
 //        STR R4, [R0, R2]
-loop	STR R1, [R0, R2, LSL #2] ; aciona LED com estado atual
+loop	LDR R0, =GPIO_PORTN_BASE
+        LDR R3, [R0 , #GPIO_PORT_DATA_R ]
+        BIC R3, R2
+        ORR R3, R3, R1
+        STR R3, [R0, #GPIO_PORT_DATA_R ] ; aciona LED com estado atual
         MOVT R3, #0x000F ; constante de atraso 
 delay   CBZ R3, theend ; 1 clock
         SUB R3, R3, #1 ; 1 clock

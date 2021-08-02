@@ -1,21 +1,21 @@
 ###############################################################################
 #
-# IAR ELF Linker V9.10.2.313/W64 for ARM                  26/Jul/2021  04:22:41
+# IAR ELF Linker V9.10.2.313/W64 for ARM                  02/Aug/2021  07:22:16
 # Copyright 2007-2021 IAR Systems AB.
 #
 #    Output file  =
-#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc16\Debug\Exe\Exerc16.out
+#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc18\Debug\Exe\Exerc18.out
 #    Map file     =
-#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc16\Debug\List\Exerc16.map
+#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc18\Debug\List\Exerc18.map
 #    Command line =
 #        -f
-#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc16\Debug\Exe\Exerc16.out.rsp
-#        (D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc16\Debug\Obj\asm.o
+#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc18\Debug\Exe\Exerc18.out.rsp
+#        (D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc18\Debug\Obj\asm.o
 #        --no_out_extension -o
-#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc16\Debug\Exe\Exerc16.out
+#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc18\Debug\Exe\Exerc18.out
 #        --redirect _Printf=_PrintfFullNoMb --redirect _Scanf=_ScanfFullNoMb
 #        --map
-#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc16\Debug\List\Exerc16.map
+#        D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc18\Debug\List\Exerc18.map
 #        --config "C:\Program Files\IAR Systems\Embedded Workbench
 #        9.0\arm\config\linker\TexasInstruments\TM4C1294NC.icf" --semihosting
 #        --no_library_search --entry __iar_program_start --vfe --text_out
@@ -45,10 +45,10 @@ No sections matched the following patterns:
   .intvec   ro code          0x0    0x40  asm.o [1]
                           - 0x40    0x40
 
-"P1":                               0x72
-  .text     ro code         0x40    0x70  asm.o [1]
-  .text     ro code         0xb0     0x2  asm.o [1]
-                          - 0xb2    0x72
+"P1":                              0x166
+  .text     ro code         0x40   0x164  asm.o [1]
+  .text     ro code        0x1a4     0x2  asm.o [1]
+                         - 0x1a6   0x166
 
 "P2":                             0x8000
   CSTACK             0x2000'0000  0x8000  <Block>
@@ -59,7 +59,7 @@ Unused ranges:
 
          From           To      Size
          ----           --      ----
-         0xb2     0xf'ffff  0xf'ff4e
+        0x1a6     0xf'ffff  0xf'fe5a
   0x2000'8000  0x2003'ffff  0x3'8000
 
 
@@ -74,14 +74,14 @@ command line/config:
     --------------------------------
     Total:
 
-D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc16\Debug\Obj: [1]
-    asm.o               178
+D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc18\Debug\Obj: [1]
+    asm.o               422
     --------------------------------
-    Total:              178
+    Total:              422
 
     Linker created            32'768
 ------------------------------------
-    Grand Total:        178   32'768
+    Grand Total:        422   32'768
 
 
 *******************************************************************************
@@ -96,9 +96,9 @@ __iar_program_start         0x41        Code  Gb  asm.o [1]
 __vector_table               0x0        Data  Gb  asm.o [1]
 
 
-[1] = D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc16\Debug\Obj
+[1] = D:\UTFPR\Microcontroladores\ParteII\LAB3\TM4C1294_SM_IAR9\Projects\Exerc18\Debug\Obj
 
-     178 bytes of readonly  code memory
+     422 bytes of readonly  code memory
   32'768 bytes of readwrite data memory
 
 Errors: none

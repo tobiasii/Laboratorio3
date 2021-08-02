@@ -31,7 +31,7 @@ __iar_program_start
         
 main:   MOV R0, #(PORTN_BIT)
         ORR R0, #(PORTF_BIT)
-        ORR R0, #(PORTF_BIT)
+        ORR R0, #(PORTJ_BIT)
 	BL GPIO_enable ; habilita clock ao port N
         
 	LDR R0, =GPIO_PORTN_BASE
@@ -42,9 +42,13 @@ main:   MOV R0, #(PORTN_BIT)
         MOV R1, #00010001b ; bits 0 e 3 como saída (LEDs D3 e D4)
         BL GPIO_digital_output
         
+        LDR R0, =GPIO_PORTJ_BASE
+        MOV R1, #00000011b 
+        BL GPIO_digital_input
+        
         MOV R0 , #0
 loop:   BL Set_Leds; aciona LEDs D1 e D2
-        ADD R0 , #1
+        BL Sel_Operation
         PUSH {R0}
         MOVT R0, #0x000F
         BL SW_delay ; atraso (determina frequência de acionamento)
@@ -84,6 +88,24 @@ GPIO_digital_output:
 	STR R2, [R0, #GPIO_DEN]
 
         BX LR
+        
+; GPIO_digital_input: habilita entradas digitais no port de GPIO desejado
+; R0 = endereço base do port desejado
+; R1 = padrão de bits (1) a serem habilitados como entradas digitais
+GPIO_digital_input:
+	LDR R2, [R0, #GPIO_DIR]
+	BIC R2, R1 ; configura bits de entrada
+	STR R2, [R0, #GPIO_DIR]
+
+	LDR R2, [R0, #GPIO_DEN]
+	ORR R2, R1 ; habilita função digital
+	STR R2, [R0, #GPIO_DEN]
+
+	LDR R2, [R0, #GPIO_PUR]
+	ORR R2, R1 ; habilita resitor de pull-up
+	STR R2, [R0, #GPIO_PUR]
+
+        BX LR
 
 ; -------------------------------------------------------------------------------
 ; Fun??o PortF_Output
@@ -112,6 +134,17 @@ PortN_Output:
 	STR R0, [R1]                            ;Escreve na porta N o barramento de dados dos pinos N1 e N0
 	BX LR									;Retorno
 	
+; -------------------------------------------------------------------------------
+; Fun??o PortJ_Input
+; Par?metro de entrada: N?o tem
+; Par?metro de sa?da: R0 --> o valor da leitura
+PortJ_Input
+	LDR	R1, =GPIO_PORTJ_BASE		    ;Carrega o valor do offset do data register
+        ORR     R1, #GPIO_DAT
+	LDR R0, [R1]                            ;L? no barramento de dados dos pinos [J1-J0]
+        
+	BX LR									;Retorno
+
 ; SW_delay: atraso de tempo por software
 ; R0 = valor do atraso
 SW_delay:
@@ -123,7 +156,7 @@ out_delay:
         
 ; -------------------------------------------------------------------------------
 ; Fun??o Set Leds
-; Par?metro de entrada: 
+; Par?metro de entrada: R0 
 ; Par?metro de sa?da: N?o tem
 Set_Leds:	
 	; CLEAR LEDs
@@ -152,7 +185,29 @@ Set_LEDs_3_4
 	POP {LR,R0}
 	
 	BX LR
-
+        
+; -------------------------------------------------------------------------------
+; Fun??o Sel Operation
+; Par?metro de entrada: R0 -> status
+; Par?metro de sa?da: R0 -> new status
+Sel_Operation:
+        PUSH {R0,LR}
+        BL PortJ_Input
+        CMP R0 , #2
+        BEQ SW1
+        CMP R0 , #1
+        BEQ SW2
+        POP {R0,LR}
+        BX LR
+SW1     
+        POP {R0,LR}
+        ADD R0 , #1
+        BX LR
+SW2     
+        POP {R0,LR}
+        SUB R0 , #1
+        BX LR
+                
 
 ; TABELA DE VETORES DE INTERRUPÇÂO
 

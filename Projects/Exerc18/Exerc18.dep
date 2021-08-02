@@ -1,53 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>5</fileVersion>
-    <fileChecksum>894298888</fileChecksum>
+    <fileChecksum>394331999</fileChecksum>
     <configuration>
         <name>Debug</name>
         <outputs>
-            <file>$TOOLKIT_DIR$\config\linker\TexasInstruments\TM4C1294NC.icf</file>
             <file>$PROJ_DIR$\Debug\Obj\asm.o</file>
-            <file>$PROJ_DIR$\Debug\Exe\Exerc16.out</file>
-            <file>$PROJ_DIR$\Debug\Obj\asm.o.rsp</file>
-            <file>$PROJ_DIR$\Debug\List\Exerc16.map</file>
+            <file>$PROJ_DIR$\Debug\Exe\Exerc18.out</file>
             <file>$PROJ_DIR$\asm.s</file>
+            <file>$PROJ_DIR$\..\gpio2\src\gpio2.s</file>
+            <file>$PROJ_DIR$\..\Exerc17\asm.s</file>
+            <file>$TOOLKIT_DIR$\config\linker\TexasInstruments\TM4C1294NC.icf</file>
+            <file>$PROJ_DIR$\Debug\Obj\asm.o.rsp</file>
+            <file>$PROJ_DIR$\Debug\List\Exerc18.map</file>
         </outputs>
         <file>
-            <name>[ROOT_NODE]</name>
+            <name>$PROJ_DIR$\Debug\Exe\Exerc18.out</name>
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 4 2</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Debug\Exe\Exerc16.out</name>
-            <outputs>
-                <tool>
-                    <name>ILINK</name>
-                    <file> 4</file>
+                    <file> 7</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 0 1</file>
+                    <file> 5 0</file>
                 </tool>
             </inputs>
+        </file>
+        <file>
+            <name>[ROOT_NODE]</name>
+            <outputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 1 7</file>
+                </tool>
+            </outputs>
         </file>
         <file>
             <name>$PROJ_DIR$\asm.s</name>
             <outputs>
                 <tool>
                     <name>AARM</name>
-                    <file> 1</file>
+                    <file> 0</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>AARM</name>
-                    <file> 3</file>
+                    <file> 6</file>
                 </tool>
             </inputs>
         </file>
